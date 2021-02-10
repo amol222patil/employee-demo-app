@@ -1,3 +1,7 @@
+##Deployed URL
+https://employee-8utht84ck.vercel.app/
+
+
 ## Available Script
 
 In the project directory, you can run:
