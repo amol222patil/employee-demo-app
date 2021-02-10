@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Formik } from 'formik'
@@ -9,15 +9,18 @@ import profileIcon from '../images/profile.png'
 import passwordIcon from '../images/lock.png'
 
 const LoginForm = (props) => {
+  const [errorMessage, setErrorMessage] = useState('')
   const submitHandler = (values) => {
     const { userName, password, login, onSuccessfullyLogin } = props
     const { userName: inputUserName, password: inputPassword } = values
-
+    if(errorMessage){
+      setErrorMessage('')
+    }
     if (userName.toLowerCase() === inputUserName.toLowerCase() && password.toLowerCase() === inputPassword.toLowerCase()) {
       login()
       onSuccessfullyLogin()
     } else {
-      alert('Invalid User name or password.')
+      setErrorMessage('The username / password combination is not valid.')
     }
   }
 
@@ -37,6 +40,7 @@ const LoginForm = (props) => {
 
   return (
     <div>
+      {errorMessage && <div className='login_error_message' >{errorMessage}</div>}
       <Formik
         initialValues={{ userName: '', password: '' }}
         onSubmit={submitHandler}

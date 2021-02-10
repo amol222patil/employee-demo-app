@@ -1,5 +1,4 @@
 import ActionTypes from './action-types'
-//TODO: update password
 const initialState = {
   userDetails: { userName: 'hruday@gmail.com', password: 'hruday123' },
   userList: [
